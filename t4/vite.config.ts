@@ -8,4 +8,5 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
+  base: '/gl19/T4/',
 })

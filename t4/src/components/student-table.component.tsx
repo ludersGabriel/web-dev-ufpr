@@ -1,4 +1,4 @@
-import { alunosByMatr, matrByCode } from '@/dataLoader'
+import { matrByCode } from '@/dataLoader'
 import { useMemo } from 'react'
 import StudentCell, { Explanations } from './student-cell.component'
 import { disciplinas2011, disciplinaTable } from '@/types/disciplina'
@@ -42,12 +42,6 @@ export default function StudentTable({ grr }: Props) {
 
       return 1
     })
-
-  const eqvs = alunosByMatr[grr]?.filter(
-    (matr) => matr.SITUACAO.search('Equivalência') !== -1
-  )
-
-  console.log(eqvs)
 
   return (
     <>

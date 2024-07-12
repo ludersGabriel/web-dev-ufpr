@@ -12,7 +12,7 @@ export async function loadAlunos(): Promise<void> {
       mergeAttrs: true,
     })
 
-    const response = await fetch('/alunos.xml')
+    const response = await fetch('/gl19/T4/alunos.xml')
     const xmlText = await response.text()
     const result = await parser.parseStringPromise(xmlText)
 
@@ -64,5 +64,3 @@ export const matrByCode: {
 for (const matr in alunosByMatr) {
   matrByCode[matr] = groupByCode(alunosByMatr[matr])
 }
-
-console.log(alunosByMatr)
