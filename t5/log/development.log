@@ -1,0 +1,496 @@
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-08-07 20:05:16.469378', '2024-08-07 20:05:16.469382') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePosts (20240807195943)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240807195943') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.8ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Ipsum ut dolor."], ["body", "Sapiente ut occaecati. Nisi in aliquam. Sunt qui ipsam."], ["created_at", "2024-08-07 20:05:29.898530"], ["updated_at", "2024-08-07 20:05:29.898530"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.7ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Et et natus."], ["body", "Officiis fugiat quas. Iure neque architecto. Nemo voluptas velit."], ["created_at", "2024-08-07 20:05:29.901453"], ["updated_at", "2024-08-07 20:05:29.901453"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Reprehenderit non exercitationem."], ["body", "Suscipit quia quae. Ut quos est. Rerum officiis dignissimos."], ["created_at", "2024-08-07 20:05:29.903535"], ["updated_at", "2024-08-07 20:05:29.903535"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.7ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Sunt distinctio sit."], ["body", "Ad quia alias. Dolorem temporibus sit. Hic iure assumenda."], ["created_at", "2024-08-07 20:05:29.905558"], ["updated_at", "2024-08-07 20:05:29.905558"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Aut aut aut."], ["body", "Praesentium debitis ut. Corporis occaecati cupiditate. Repudiandae ut voluptatem."], ["created_at", "2024-08-07 20:05:29.907631"], ["updated_at", "2024-08-07 20:05:29.907631"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Consequatur sapiente quo."], ["body", "Voluptas quasi est. Laudantium molestiae aspernatur. Quia modi ratione."], ["created_at", "2024-08-07 20:05:29.909697"], ["updated_at", "2024-08-07 20:05:29.909697"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Dolor incidunt ut."], ["body", "Est voluptatem aliquid. Quia asperiores similique. Similique deserunt maxime."], ["created_at", "2024-08-07 20:05:29.911673"], ["updated_at", "2024-08-07 20:05:29.911673"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Omnis exercitationem unde."], ["body", "Id quia ratione. Animi eligendi cum. Fugit doloremque quia."], ["created_at", "2024-08-07 20:05:29.913647"], ["updated_at", "2024-08-07 20:05:29.913647"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Et eum temporibus."], ["body", "Qui tempora voluptas. Et voluptatem molestiae. Aut incidunt laboriosam."], ["created_at", "2024-08-07 20:05:29.915654"], ["updated_at", "2024-08-07 20:05:29.915654"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Quia ut autem."], ["body", "Nam est natus. Est alias aut. Qui quia quis."], ["created_at", "2024-08-07 20:05:29.917625"], ["updated_at", "2024-08-07 20:05:29.917625"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Aut quo qui."], ["body", "Adipisci vero aperiam. Sed quia cum. Esse repellat laboriosam."], ["created_at", "2024-08-07 20:05:29.919568"], ["updated_at", "2024-08-07 20:05:29.919568"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Aspernatur ex ipsam."], ["body", "Molestias eos reprehenderit. Quasi perspiciatis accusamus. Eveniet inventore nobis."], ["created_at", "2024-08-07 20:05:29.921579"], ["updated_at", "2024-08-07 20:05:29.921579"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Rerum nisi fugiat."], ["body", "Et aut placeat. Magnam hic ad. Perferendis consequuntur vero."], ["created_at", "2024-08-07 20:05:29.923563"], ["updated_at", "2024-08-07 20:05:29.923563"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Qui nam consectetur."], ["body", "Aspernatur voluptatem debitis. Ut reprehenderit quaerat. Ipsum magni quis."], ["created_at", "2024-08-07 20:05:29.925546"], ["updated_at", "2024-08-07 20:05:29.925546"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Dolores ut vel."], ["body", "Inventore voluptate voluptatem. Enim nihil assumenda. Odio et id."], ["created_at", "2024-08-07 20:05:29.927537"], ["updated_at", "2024-08-07 20:05:29.927537"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Velit ea odio."], ["body", "Tempora consequatur quis. Minima fugiat iusto. Voluptas et dolor."], ["created_at", "2024-08-07 20:05:29.929564"], ["updated_at", "2024-08-07 20:05:29.929564"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Corrupti qui repudiandae."], ["body", "Sequi fugiat possimus. Ut necessitatibus cumque. Natus deleniti voluptatibus."], ["created_at", "2024-08-07 20:05:29.931561"], ["updated_at", "2024-08-07 20:05:29.931561"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Laudantium praesentium qui."], ["body", "Maiores aspernatur at. Non natus fuga. Dicta ab dolorem."], ["created_at", "2024-08-07 20:05:29.933547"], ["updated_at", "2024-08-07 20:05:29.933547"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Soluta sunt minima."], ["body", "Aperiam sequi qui. Minima alias voluptatum. Laboriosam qui sequi."], ["created_at", "2024-08-07 20:05:29.935528"], ["updated_at", "2024-08-07 20:05:29.935528"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPost Create (0.6ms)[0m  [1m[32mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Iure non excepturi."], ["body", "Voluptas rerum quae. Velit consequatur laborum. Enim eos illo."], ["created_at", "2024-08-07 20:05:29.937526"], ["updated_at", "2024-08-07 20:05:29.937526"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" /* loading for pp */ ORDER BY "posts"."created_at" DESC LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2024-08-07 17:14:29 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/lurdo/.rbenv/versions/3.1.6/lib/ruby/gems/3.1.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/lurdo/.rbenv/versions/3.1.6/lib/ruby/gems/3.1.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | Allocations: 383)
+Completed 200 OK in 164ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 286526)
+
+
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 17:14:34 -0300
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/posts_controller.rb:8:in `index'
+Completed 200 OK in 18ms (Views: 10.0ms | ActiveRecord: 1.3ms | Allocations: 18034)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-08-07 17:14:34 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 127.0.0.1 at 2024-08-07 17:17:20 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/lurdo/.rbenv/versions/3.1.6/lib/ruby/gems/3.1.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/lurdo/.rbenv/versions/3.1.6/lib/ruby/gems/3.1.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.4ms | Allocations: 286)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 1215)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:17:26 -0300
+  
+ActionController::RoutingError (uninitialized constant Api
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-08-07 17:17:26 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:18:18 -0300
+  
+ActionController::RoutingError (uninitialized constant Api
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:18:56 -0300
+Processing by Api::V1::PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 1.5ms | Allocations: 6254)
+
+
+Started GET "/api/v1/posts/1" for 127.0.0.1 at 2024-08-07 17:20:18 -0300
+Processing by Api::V1::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 2361)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:27:32 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 30ms (Views: 18.2ms | ActiveRecord: 1.2ms | Allocations: 20320)
+
+
+Started GET "/api/v1/posts/posts" for 127.0.0.1 at 2024-08-07 17:57:15 -0300
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"posts"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Completed 404 Not Found in 6ms (ActiveRecord: 1.1ms | Allocations: 2527)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=posts):
+  
+app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Started GET "/api/v1/posts/posts" for 127.0.0.1 at 2024-08-07 17:57:18 -0300
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"posts"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms | Allocations: 727)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=posts):
+  
+app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Started GET "/api/v1/posts/posts" for 127.0.0.1 at 2024-08-07 17:57:18 -0300
+Processing by Api::V1::PostsController#show as */*
+  Parameters: {"id"=>"posts"}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms | Allocations: 590)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=posts):
+  
+app/controllers/api/v1/posts_controller.rb:44:in `set_post'
+Started GET "/api/v1//posts" for 127.0.0.1 at 2024-08-07 17:57:39 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 2342)
+
+
+Started GET "/api/v1//posts" for 127.0.0.1 at 2024-08-07 17:57:39 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:40 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2193)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:40 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:46 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2315)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:46 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2193)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:56 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 2315)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 17:57:56 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:00:48 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:00:57 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:01:04 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:01:16 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:01:44 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:01:57 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2206)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:01:57 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:02:46 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2313)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:02:46 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2192)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:04:41 -0300
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:04:41 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:07:45 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 29ms (Views: 17.4ms | ActiveRecord: 1.2ms | Allocations: 20320)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:07:47 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2345)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:07:47 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.1ms | Allocations: 2204)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:08:25 -0300
+Processing by Api::V1::PostsController#index as HTML
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2190)
+
+
+Started GET "/up" for 127.0.0.1 at 2024-08-07 18:10:25 -0300
+Processing by Rails::HealthController#show as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 10)
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 2597)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:15:26 -0300
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:15:26 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 40ms (Views: 27.2ms | ActiveRecord: 2.2ms | Allocations: 21242)
+
+
+Completed 200 OK in 43ms (Views: 28.1ms | ActiveRecord: 0.8ms | Allocations: 22906)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:16:31 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.1ms | Allocations: 2335)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:16:31 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2203)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:16:39 -0300
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:16:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 34ms (Views: 20.7ms | ActiveRecord: 1.4ms | Allocations: 21502)
+
+
+Completed 200 OK in 35ms (Views: 21.5ms | ActiveRecord: 0.9ms | Allocations: 22655)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:17:22 -0300
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:17:22 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 32ms (Views: 20.2ms | ActiveRecord: 1.3ms | Allocations: 21500)
+
+
+Completed 200 OK in 33ms (Views: 20.8ms | ActiveRecord: 0.8ms | Allocations: 22654)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:17:34 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2327)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:17:34 -0300
+Processing by Api::V1::PostsController#index as */*
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2191)
+
+
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 18:46:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 18:46:37 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 18:46:50 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 18:47:13 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/posts" for 127.0.0.1 at 2024-08-07 18:47:27 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:48:21 -0300
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 11.8ms | ActiveRecord: 1.7ms | Allocations: 14616)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:48:24 -0300
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms | Allocations: 2316)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:48:40 -0300
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2206)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:48:56 -0300
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 2203)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:49:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 30ms (Views: 23.4ms | ActiveRecord: 1.5ms | Allocations: 14639)
+
+
+Started GET "/api/v1/posts" for 127.0.0.1 at 2024-08-07 18:49:48 -0300
+Processing by Api::V1::PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY "posts"."created_at" DESC[0m
+  ↳ app/controllers/api/v1/posts_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 2327)
+
+
