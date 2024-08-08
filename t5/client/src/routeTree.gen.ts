@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as AuthTrainersImport } from './routes/_auth/trainers'
 import { Route as AuthPokemonsImport } from './routes/_auth/pokemons'
 import { Route as AuthDashboardImport } from './routes/_auth/dashboard'
+import { Route as AuthBattlesImport } from './routes/_auth/battles'
 
 // Create/Update Routes
 
@@ -44,6 +45,11 @@ const AuthDashboardRoute = AuthDashboardImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const AuthBattlesRoute = AuthBattlesImport.update({
+  path: '/battles',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -55,6 +61,10 @@ declare module '@tanstack/react-router' {
     '/_auth': {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
+    }
+    '/_auth/battles': {
+      preLoaderRoute: typeof AuthBattlesImport
+      parentRoute: typeof AuthImport
     }
     '/_auth/dashboard': {
       preLoaderRoute: typeof AuthDashboardImport
@@ -76,6 +86,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([
+    AuthBattlesRoute,
     AuthDashboardRoute,
     AuthPokemonsRoute,
     AuthTrainersRoute,

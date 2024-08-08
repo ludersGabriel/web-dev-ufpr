@@ -57,10 +57,10 @@ function AuthLayout() {
             Pokemons
           </Link>
           <Link
-            to='/profile'
+            to='/battles'
             className='text-pastel-blue-dark hover:text-pastel-blue'
           >
-            Profile
+            Battles
           </Link>
         </div>
         <button

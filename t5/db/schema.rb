@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_145326) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_08_154950) do
+  create_table "battles", force: :cascade do |t|
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pokemon_battles", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "battle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_pokemon_battles_on_battle_id"
+    t.index ["pokemon_id"], name: "index_pokemon_battles_on_pokemon_id"
+  end
+
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "poke_type"
@@ -39,6 +54,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_145326) do
     t.string "role", default: "user", null: false
   end
 
+  add_foreign_key "pokemon_battles", "battles", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "pokemon_battles", "pokemons", on_update: :cascade, on_delete: :cascade
   add_foreign_key "pokemons", "trainers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "trainer_profiles", "trainers", on_update: :cascade, on_delete: :cascade
 end

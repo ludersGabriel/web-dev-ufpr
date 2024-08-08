@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  resources :pokemon_battles
+  resources :battles
   resources :pokemons
   resources :trainer_profiles
   namespace :api do
     namespace :v1 do
       resources :trainers
+      resources :pokemon_battles
+      resources :battles do
+        collection do
+          get 'with_pokemons', to: 'battles#index_with_pokemons'
+        end
+      end
       resources :pokemons do
         collection do
           get 'by_trainer', to: 'pokemons#index_by_trainer'

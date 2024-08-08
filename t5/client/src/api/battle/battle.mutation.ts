@@ -4,26 +4,23 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { baseUrl } from '../config'
-import { PokemonEditForm } from '@/components/pokemon/edit-modal'
-import { PokemonForm } from '@/components/pokemon/create-modal'
+import { BattleForm } from '@/components/battles/create-modal'
+import { BattleEditForm } from '@/components/battles/edit-modal'
 
-export function usePokemonDelete() {
+export function useBattleDelete() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['pokemon-delete', auth.token],
+    mutationKey: ['battle', auth.token],
     mutationFn: async (id: number) => {
-      const resp = await fetch(
-        `${baseUrl}/pokemons/${id}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${auth.token}`,
-          },
-        }
-      )
+      const resp = await fetch(`${baseUrl}/battles/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.token}`,
+        },
+      })
 
       if (!resp.ok) {
         const errorData = await resp.json()
@@ -36,24 +33,20 @@ export function usePokemonDelete() {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ['pokemons-by-trainers', auth.token],
-      })
-
-      client.invalidateQueries({
-        queryKey: ['pokemons', auth.token],
+        queryKey: ['battles-with-pokemons', auth.token],
       })
     },
   })
 }
 
-export function usePokemonCreate() {
+export function useBattleCreate() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['pokemon-create', auth.token],
-    mutationFn: async (data: PokemonForm) => {
-      const resp = await fetch(`${baseUrl}/pokemons`, {
+    mutationKey: ['battle', auth.token],
+    mutationFn: async (data: BattleForm) => {
+      const resp = await fetch(`${baseUrl}/battles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +54,6 @@ export function usePokemonCreate() {
         },
         body: JSON.stringify(data),
       })
-
       if (!resp.ok) {
         const errorData = await resp.json()
         throw new Error(
@@ -73,25 +65,21 @@ export function usePokemonCreate() {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ['pokemons-by-trainers', auth.token],
-      })
-
-      client.invalidateQueries({
-        queryKey: ['pokemons', auth.token],
+        queryKey: ['battles-with-pokemons', auth.token],
       })
     },
   })
 }
 
-export function usePokemonUpdate() {
+export function useBattleUpdate() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['pokemon-update', auth.token],
-    mutationFn: async (data: PokemonEditForm) => {
+    mutationKey: ['battle-update', auth.token],
+    mutationFn: async (data: BattleEditForm) => {
       const resp = await fetch(
-        `${baseUrl}/pokemons/${data.id}`,
+        `${baseUrl}/battles/${data.id}`,
         {
           method: 'PUT',
           headers: {
@@ -113,11 +101,7 @@ export function usePokemonUpdate() {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ['pokemons-by-trainers', auth.token],
-      })
-
-      client.invalidateQueries({
-        queryKey: ['pokemons', auth.token],
+        queryKey: ['battles-with-pokemons', auth.token],
       })
     },
   })

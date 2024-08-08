@@ -42,3 +42,25 @@ export function usePokemonsByTrainers() {
     enabled: !!token, // Only run the query if token is available
   })
 }
+
+export function usePokemons() {
+  useQueryClient()
+  const { token } = useAuth()
+
+  return useQuery<Pokemon[]>({
+    queryKey: ['pokemons', token],
+    queryFn: async () => {
+      const response = await fetch(`${baseUrl}/pokemons`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    },
+    enabled: !!token, // Only run the query if token is available
+  })
+}

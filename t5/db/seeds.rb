@@ -78,3 +78,29 @@ pokemons.each do |pokemon|
   puts pokemon
   Pokemon.create!(pokemon)
 end
+
+# db/seeds.rb
+
+battles = [
+  { location: 'Viridian City' },
+  { location: 'Pewter City' },
+  { location: 'Cerulean City' },
+  { location: 'Vermilion City' },
+  { location: 'Lavender Town' }
+]
+
+battles.each do |battle|
+  puts battle
+  Battle.create!(battle)
+end
+
+pokemon_battles = [
+  { pokemon_id: 1, battle_id: 1 },
+  { pokemon_id: 2, battle_id: 1 },
+  { pokemon_id: 3, battle_id: 2 }
+]
+
+pokemon_battles.each do |pokemon_battle|
+  puts pokemon_battle
+  PokemonBattle.create!(pokemon_battle)
+end

@@ -1,5 +1,7 @@
 class Pokemon < ApplicationRecord
   belongs_to :trainer
+  has_many :pokemon_battle, dependent: :destroy
+  has_many :battle, through: :pokemon_battle
 
   validates :name, presence: true
   validates :poke_type, presence: true
