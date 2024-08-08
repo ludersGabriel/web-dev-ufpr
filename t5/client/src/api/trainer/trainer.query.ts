@@ -10,7 +10,7 @@ export type Trainer = {
   id: number
   username: string
   name: string
-  role: string
+  role: 'admin' | 'user'
 }
 
 export function useTrainer(token: string) {
@@ -18,15 +18,7 @@ export function useTrainer(token: string) {
 
   const query = useQuery({
     queryKey: ['trainer', token],
-    queryFn: () => {
-      return fetch(`${baseUrl}/trainer`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => res.json())
-    },
+    queryFn: me,
     enabled: !!token,
   })
 
@@ -34,7 +26,7 @@ export function useTrainer(token: string) {
     return {
       isPending: false,
       isFetching: false,
-      user: null,
+      trainer: null,
       error: null,
     }
   }
@@ -42,7 +34,7 @@ export function useTrainer(token: string) {
   return {
     isPending: query.isPending,
     isFetching: query.isFetching,
-    user: query.data?.user as Trainer | null,
+    trainer: query.data?.trainer ?? null,
     error: query.error,
   }
 }

@@ -16,7 +16,7 @@ import {
 export interface AuthContext {
   isAuthenticated: boolean
   token: string | null
-  user: Trainer | null
+  trainer: Trainer | null
   setToken: (token: string | null) => void
   isLoading: boolean
   logout: () => void
@@ -30,8 +30,8 @@ export function AuthProvider({
   children: ReactNode
 }) {
   const [token, setToken] = useState<string | null>(null)
-  const { user, isPending } = useTrainer(token ?? '')
-  const isAuthenticated = !!user
+  const { trainer, isPending } = useTrainer(token ?? '')
+  const isAuthenticated = !!trainer
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export function AuthProvider({
   return (
     <AuthContext.Provider
       value={{
-        user,
+        trainer: trainer,
         isAuthenticated,
         token,
         setToken,

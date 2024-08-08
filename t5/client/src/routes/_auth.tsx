@@ -1,7 +1,4 @@
-import {
-  Trainer,
-  trainerQueryOptions,
-} from '@/api/trainer/trainer.query'
+import { trainerQueryOptions } from '@/api/trainer/trainer.query'
 import { useAuth } from '@/auth'
 import {
   Link,
@@ -20,7 +17,7 @@ export const Route = createFileRoute('/_auth')({
         trainerQueryOptions
       )
 
-      return { trainer: data.trainer as Trainer }
+      return { trainer: data.trainer }
     } catch (e) {
       throw redirect({
         to: '/',

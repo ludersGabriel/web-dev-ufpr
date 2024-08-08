@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hometown: MyString
+  favorite_pokemon: MyString
+  trainer_id: 1
+
+two:
+  hometown: MyString
+  favorite_pokemon: MyString
+  trainer_id: 1

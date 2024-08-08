@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  resources :trainer_profiles
   namespace :api do
     namespace :v1 do
       resources :trainers
+      resources :trainer_profiles do
+        collection do
+          get 'by_trainer', to: 'trainer_profiles#show_by_trainer'
+        end
+      end
       get 'trainer', to: 'trainers#me'
       post 'auth/login', to: 'authentication#login'
     end

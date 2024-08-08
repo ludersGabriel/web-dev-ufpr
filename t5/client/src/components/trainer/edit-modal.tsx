@@ -31,41 +31,50 @@ import {
 
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
-import { useTrainerCreate } from '@/api/trainer/trainer.mutation'
+import { useTrainerUpdate } from '@/api/trainer/trainer.mutation'
 import toast from 'react-hot-toast'
+import { Trainer } from '@/api/trainer/trainer.query'
 
-const trainerCreateSchema = z.object({
+const trainerEditSchema = z.object({
   username: z.string().min(3, 'Username is too short'),
   role: z.enum(['admin', 'user']),
-  password: z.string(),
+  password: z.string().optional(),
   name: z.string(),
   age: z.coerce.number(),
+  id: z.coerce.number(),
 })
 
-export type TrainerForm = z.infer<
-  typeof trainerCreateSchema
+export type TrainerEditForm = z.infer<
+  typeof trainerEditSchema
 >
 
-export default function TrainerCreate() {
-  const [open, setOpen] = useState<boolean>(false)
-  const trainerCreate = useTrainerCreate()
+type Props = {
+  propsTrainer: Trainer
+}
 
-  const form = useForm<TrainerForm>({
-    resolver: zodResolver(trainerCreateSchema),
+export default function TrainerEdit({
+  propsTrainer,
+}: Props) {
+  const [open, setOpen] = useState<boolean>(false)
+  const trainerUpdate = useTrainerUpdate()
+
+  const form = useForm<TrainerEditForm>({
+    resolver: zodResolver(trainerEditSchema),
     defaultValues: {
-      // id: undefined,
+      ...propsTrainer,
       password: '',
-      username: '',
-      role: 'user',
-      age: 0,
-      name: '',
     },
   })
 
-  function onSubmit(data: TrainerForm) {
-    trainerCreate.mutate(data, {
+  function onSubmit(data: TrainerEditForm) {
+    const passData = {
+      ...data,
+      password: data.password ?? undefined,
+    }
+
+    trainerUpdate.mutate(passData, {
       onSuccess: () => {
-        toast.success('Trainer created')
+        toast.success('Trainer updated')
       },
       onError: (error) => {
         toast.error(error.message)
@@ -88,20 +97,20 @@ export default function TrainerCreate() {
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
       <DialogTrigger asChild>
-        <div className='flex justify-center align-middle p-5'>
+        <div>
           <Button
-            className='bg-pastel-green-dark hover:bg-pastel-green text-pastel-yellow px-4 py-2 rounded mr-2'
+            className='bg-pastel-yellow-dark hover:bg-pastel-yellow text-pastel-blue-dark px-4 py-2 rounded'
             onClick={handleOpen}
           >
-            Add Trainer
+            Edit
           </Button>
         </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Trainer Creation Form</DialogTitle>
+          <DialogTitle>Trainer Update Form</DialogTitle>
           <DialogDescription>
-            Fill out the form below to create a new trainer
+            Fill out the form below to update your trainer
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -208,7 +217,7 @@ export default function TrainerCreate() {
               type='submit'
               className='bg-pastel-green-dark hover:bg-pastel-green text-pastel-yellow px-4 py-2 rounded mr-2'
             >
-              Create
+              Update
             </Button>
             <DialogClose asChild onClick={resetForm}>
               <Button type='button' variant='destructive'>

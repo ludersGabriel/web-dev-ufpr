@@ -10,7 +10,6 @@ export const Route = createFileRoute('/_auth/dashboard')({
 
 export default function Dashboard() {
   const { trainer } = Route.useRouteContext()
-
   // Randomized stats
   const [stats, setStats] = useState({
     trainers: 0,
@@ -58,24 +57,6 @@ export default function Dashboard() {
           <h3 className='font-bold text-xl'>Battles</h3>
           <p className='text-2xl'>{stats.battles}</p>
         </div>
-      </div>
-
-      <div className='user-profile bg-pastel-yellow-light p-4 rounded-lg shadow-lg'>
-        <h2 className='text-2xl font-semibold mb-4'>
-          Profile Information
-        </h2>
-        <p className='text-lg'>
-          <strong>Name:</strong> {trainer.name}
-        </p>
-        <p className='text-lg'>
-          <strong>Username:</strong> {trainer.username}
-        </p>
-        <p className='text-lg'>
-          <strong>Role:</strong> {trainer.role}
-        </p>
-        <button className='bg-pastel-pink-dark hover:bg-pastel-pink text-white px-4 py-2 rounded mt-4'>
-          Edit Profile
-        </button>
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
