@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthTrainersImport } from './routes/_auth/trainers'
+import { Route as AuthPokemonsImport } from './routes/_auth/pokemons'
 import { Route as AuthDashboardImport } from './routes/_auth/dashboard'
 
 // Create/Update Routes
@@ -30,6 +31,11 @@ const IndexRoute = IndexImport.update({
 
 const AuthTrainersRoute = AuthTrainersImport.update({
   path: '/trainers',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthPokemonsRoute = AuthPokemonsImport.update({
+  path: '/pokemons',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -54,6 +60,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/pokemons': {
+      preLoaderRoute: typeof AuthPokemonsImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/trainers': {
       preLoaderRoute: typeof AuthTrainersImport
       parentRoute: typeof AuthImport
@@ -65,7 +75,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  AuthRoute.addChildren([AuthDashboardRoute, AuthTrainersRoute]),
+  AuthRoute.addChildren([
+    AuthDashboardRoute,
+    AuthPokemonsRoute,
+    AuthTrainersRoute,
+  ]),
 ])
 
 /* prettier-ignore-end */

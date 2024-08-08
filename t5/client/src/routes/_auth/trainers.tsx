@@ -123,9 +123,11 @@ export default function Trainers() {
                   )}
                 </>
               ) : (
-                <TrainerProfileCreate
-                  propsTrainer={trainer}
-                />
+                isAdmin && (
+                  <TrainerProfileCreate
+                    propsTrainer={trainer}
+                  />
+                )
               )}
             </div>
           </div>

@@ -4,18 +4,18 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 import { baseUrl } from '../config'
-import { TrainerForm } from '@/components/trainer/create-modal'
-import { TrainerEditForm } from '@/components/trainer/edit-modal'
+import { PokemonEditForm } from '@/components/pokemon/edit-modal'
+import { PokemonForm } from '@/components/pokemon/create-modal'
 
-export function useTrainerDelete() {
+export function usePokemonDelete() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['trainer-delete', auth.token],
+    mutationKey: ['pokemon-delete', auth.token],
     mutationFn: async (id: number) => {
       const resp = await fetch(
-        `${baseUrl}/trainers/${id}`,
+        `${baseUrl}/pokemons/${id}`,
         {
           method: 'DELETE',
           headers: {
@@ -32,13 +32,9 @@ export function useTrainerDelete() {
         )
       }
 
-      return resp.json()
+      return await resp.json()
     },
     onSuccess: () => {
-      client.invalidateQueries({
-        queryKey: ['trainers', auth.token],
-      })
-
       client.invalidateQueries({
         queryKey: ['pokemons-by-trainers', auth.token],
       })
@@ -46,22 +42,20 @@ export function useTrainerDelete() {
   })
 }
 
-export function useTrainerCreate() {
+export function usePokemonCreate() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['trainer-create', auth.token],
-    mutationFn: async (data: TrainerForm) => {
-      const resp = await fetch(`${baseUrl}/trainers`, {
+    mutationKey: ['pokemon-create', auth.token],
+    mutationFn: async (data: PokemonForm) => {
+      const resp = await fetch(`${baseUrl}/pokemons`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${auth.token}`,
         },
-        body: JSON.stringify({
-          trainer: data,
-        }),
+        body: JSON.stringify(data),
       })
 
       if (!resp.ok) {
@@ -71,14 +65,9 @@ export function useTrainerCreate() {
         )
       }
 
-      const responseData = await resp.json()
-      return responseData
+      return await resp.json()
     },
     onSuccess: () => {
-      client.invalidateQueries({
-        queryKey: ['trainers', auth.token],
-      })
-
       client.invalidateQueries({
         queryKey: ['pokemons-by-trainers', auth.token],
       })
@@ -86,24 +75,22 @@ export function useTrainerCreate() {
   })
 }
 
-export function useTrainerUpdate() {
+export function usePokemonUpdate() {
   const auth = useAuth()
   const client = useQueryClient()
 
   return useMutation({
-    mutationKey: ['trainer-update', auth.token],
-    mutationFn: async (data: TrainerEditForm) => {
+    mutationKey: ['pokemon-update', auth.token],
+    mutationFn: async (data: PokemonEditForm) => {
       const resp = await fetch(
-        `${baseUrl}/trainers/${data.id}`,
+        `${baseUrl}/pokemons/${data.id}`,
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${auth.token}`,
           },
-          body: JSON.stringify({
-            trainer: data,
-          }),
+          body: JSON.stringify(data),
         }
       )
 
@@ -114,14 +101,9 @@ export function useTrainerUpdate() {
         )
       }
 
-      const responseData = await resp.json()
-      return responseData
+      return await resp.json()
     },
     onSuccess: () => {
-      client.invalidateQueries({
-        queryKey: ['trainers', auth.token],
-      })
-
       client.invalidateQueries({
         queryKey: ['pokemons-by-trainers', auth.token],
       })

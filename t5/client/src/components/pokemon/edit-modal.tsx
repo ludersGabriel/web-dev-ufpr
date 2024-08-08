@@ -24,48 +24,50 @@ import {
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { TrainerProfile } from '@/api/trainer-profile/trainer-profile.query'
-import { useTrainerProfileUpdate } from '@/api/trainer-profile/trainer-profile.mutation'
 
-const trainerProfileEditSchema = z.object({
+import { Pokemon } from '@/api/pokemon/pokemon.query'
+import { usePokemonUpdate } from '@/api/pokemon/pokemon.mutation'
+
+const pokemonEditSchema = z.object({
   id: z.coerce.number(),
-  hometown: z.string(),
-  favorite_pokemon: z.string(),
+  name: z.string(),
+  poke_type: z.string(),
+  level: z.coerce.number(),
 })
 
-export type TrainerProfileEditForm = z.infer<
-  typeof trainerProfileEditSchema
+export type PokemonEditForm = z.infer<
+  typeof pokemonEditSchema
 >
 
 type Props = {
-  propsProfile: TrainerProfile
+  propsPokemon: Pokemon
 }
 
-export default function TrainerProfileEdit({
-  propsProfile,
+export default function PokemonEdit({
+  propsPokemon,
 }: Props) {
   const [open, setOpen] = useState<boolean>(false)
-  const trainerProfileUpdate = useTrainerProfileUpdate()
+  const pokemonUpdate = usePokemonUpdate()
 
-  const form = useForm<TrainerProfileEditForm>({
-    resolver: zodResolver(trainerProfileEditSchema),
+  const form = useForm<PokemonEditForm>({
+    resolver: zodResolver(pokemonEditSchema),
     defaultValues: {
-      ...propsProfile,
+      ...propsPokemon,
     },
   })
 
   useEffect(() => {
     if (open) {
       form.reset({
-        ...propsProfile,
+        ...propsPokemon,
       })
     }
-  }, [open, propsProfile, form])
+  }, [open, propsPokemon, form])
 
-  function onSubmit(data: TrainerProfileEditForm) {
-    trainerProfileUpdate.mutate(data, {
+  function onSubmit(data: PokemonEditForm) {
+    pokemonUpdate.mutate(data, {
       onSuccess: () => {
-        toast.success('Trainer profile updated')
+        toast.success('Pokemon updated')
       },
       onError: (error) => {
         toast.error(error.message)
@@ -99,9 +101,9 @@ export default function TrainerProfileEdit({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Trainer Update Form</DialogTitle>
+          <DialogTitle>Pokemon Update Form</DialogTitle>
           <DialogDescription>
-            Fill out the form below to update your trainer
+            Fill out the form below to update your pokemon
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -111,15 +113,13 @@ export default function TrainerProfileEdit({
           >
             <FormField
               control={form.control}
-              name='hometown'
+              name='name'
+              rules={{ required: 'Name is required' }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Home Town</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='home town'
-                      {...field}
-                    />
+                    <Input placeholder='name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,15 +128,30 @@ export default function TrainerProfileEdit({
 
             <FormField
               control={form.control}
-              name='favorite_pokemon'
+              name='poke_type'
+              rules={{
+                required: 'Pokemon Type is required',
+              }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Favorite Pokemon</FormLabel>
+                  <FormLabel>Pokemon Type</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='favorite pokemon'
-                      {...field}
-                    />
+                    <Input placeholder='fire' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='level'
+              rules={{ required: 'Level is required' }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Level</FormLabel>
+                  <FormControl>
+                    <Input type='number' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

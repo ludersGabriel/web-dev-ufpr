@@ -58,3 +58,23 @@ Trainer.create(
     username: 'user',
     password: 'user',
 )
+
+
+# db/seeds.rb
+
+pokemons = [
+  { name: 'Pikachu', poke_type: 'Electric', level: 5, trainer_id: 1 },
+  { name: 'Charmander', poke_type: 'Fire', level: 5, trainer_id: 1 },
+  { name: 'Squirtle', poke_type: 'Water', level: 5, trainer_id: 2 },
+  { name: 'Bulbasaur', poke_type: 'Grass', level: 5, trainer_id: 3 },
+  { name: 'Vulpix', poke_type: 'Fire', level: 5, trainer_id: 4 },
+  { name: 'Psyduck', poke_type: 'Water', level: 5, trainer_id: 5 },
+  { name: 'Geodude', poke_type: 'Rock', level: 5, trainer_id: 6 },
+  { name: 'Meowth', poke_type: 'Normal', level: 5, trainer_id: 7 },
+  { name: 'Hitmonchan', poke_type: 'Fighting', level: 5, trainer_id: 8 }
+]
+
+pokemons.each do |pokemon|
+  puts pokemon
+  Pokemon.create!(pokemon)
+end

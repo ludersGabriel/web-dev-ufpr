@@ -22,50 +22,47 @@ import {
 } from '@/components/ui/form'
 
 import { Input } from '@/components/ui/input'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { TrainerProfile } from '@/api/trainer-profile/trainer-profile.query'
-import { useTrainerProfileUpdate } from '@/api/trainer-profile/trainer-profile.mutation'
 
-const trainerProfileEditSchema = z.object({
-  id: z.coerce.number(),
-  hometown: z.string(),
-  favorite_pokemon: z.string(),
+import { Trainer } from '@/api/trainer/trainer.query'
+import { usePokemonCreate } from '@/api/pokemon/pokemon.mutation'
+
+const pokemonCreateSchema = z.object({
+  name: z.string(),
+  poke_type: z.string(),
+  level: z.coerce.number(),
+  trainer_id: z.coerce.number(),
 })
 
-export type TrainerProfileEditForm = z.infer<
-  typeof trainerProfileEditSchema
+export type PokemonForm = z.infer<
+  typeof pokemonCreateSchema
 >
 
-type Props = {
-  propsProfile: TrainerProfile
+export type Props = {
+  propsTrainer: Trainer
 }
 
-export default function TrainerProfileEdit({
-  propsProfile,
+export default function PokemonCreate({
+  propsTrainer,
 }: Props) {
   const [open, setOpen] = useState<boolean>(false)
-  const trainerProfileUpdate = useTrainerProfileUpdate()
+  const pokemonCreate = usePokemonCreate()
 
-  const form = useForm<TrainerProfileEditForm>({
-    resolver: zodResolver(trainerProfileEditSchema),
+  const form = useForm<PokemonForm>({
+    resolver: zodResolver(pokemonCreateSchema),
     defaultValues: {
-      ...propsProfile,
+      trainer_id: propsTrainer.id,
+      name: '',
+      poke_type: '',
+      level: 1,
     },
   })
 
-  useEffect(() => {
-    if (open) {
-      form.reset({
-        ...propsProfile,
-      })
-    }
-  }, [open, propsProfile, form])
-
-  function onSubmit(data: TrainerProfileEditForm) {
-    trainerProfileUpdate.mutate(data, {
+  function onSubmit(data: PokemonForm) {
+    pokemonCreate.mutate(data, {
       onSuccess: () => {
-        toast.success('Trainer profile updated')
+        toast.success('Pokemon created')
       },
       onError: (error) => {
         toast.error(error.message)
@@ -88,20 +85,20 @@ export default function TrainerProfileEdit({
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
       <DialogTrigger asChild>
-        <div>
+        <div className='flex justify-center'>
           <Button
-            className='bg-pastel-yellow-dark hover:bg-pastel-yellow text-pastel-blue-dark px-4 py-2 rounded'
+            className='bg-pastel-green-dark hover:bg-pastel-green text-pastel-yellow px-4 py-2 rounded'
             onClick={handleOpen}
           >
-            Edit
+            Add Pokemon
           </Button>
         </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Trainer Update Form</DialogTitle>
+          <DialogTitle>Pokemon Creation Form</DialogTitle>
           <DialogDescription>
-            Fill out the form below to update your trainer
+            Fill out the form below to create a new pokemon
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -111,15 +108,13 @@ export default function TrainerProfileEdit({
           >
             <FormField
               control={form.control}
-              name='hometown'
+              name='name'
+              rules={{ required: 'Name is required' }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Home Town</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='home town'
-                      {...field}
-                    />
+                    <Input placeholder='name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,15 +123,30 @@ export default function TrainerProfileEdit({
 
             <FormField
               control={form.control}
-              name='favorite_pokemon'
+              name='poke_type'
+              rules={{
+                required: 'Pokemon Type is required',
+              }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Favorite Pokemon</FormLabel>
+                  <FormLabel>Pokemon Type</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder='favorite pokemon'
-                      {...field}
-                    />
+                    <Input placeholder='fire' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='level'
+              rules={{ required: 'Level is required' }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Level</FormLabel>
+                  <FormControl>
+                    <Input type='number' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,7 +157,7 @@ export default function TrainerProfileEdit({
               type='submit'
               className='bg-pastel-green-dark hover:bg-pastel-green text-pastel-yellow px-4 py-2 rounded mr-2'
             >
-              Update
+              Create
             </Button>
             <DialogClose asChild onClick={resetForm}>
               <Button type='button' variant='destructive'>

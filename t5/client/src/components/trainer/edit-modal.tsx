@@ -30,7 +30,7 @@ import {
 } from '@/components/ui/select'
 
 import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTrainerUpdate } from '@/api/trainer/trainer.mutation'
 import toast from 'react-hot-toast'
 import { Trainer } from '@/api/trainer/trainer.query'
@@ -65,6 +65,15 @@ export default function TrainerEdit({
       password: '',
     },
   })
+
+  useEffect(() => {
+    if (open) {
+      form.reset({
+        ...propsTrainer,
+        password: '',
+      })
+    }
+  }, [open, propsTrainer, form])
 
   function onSubmit(data: TrainerEditForm) {
     const passData = {

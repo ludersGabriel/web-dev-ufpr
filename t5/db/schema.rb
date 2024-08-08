@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_134806) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_08_145326) do
+  create_table "pokemons", force: :cascade do |t|
+    t.string "name"
+    t.string "poke_type"
+    t.integer "level"
+    t.integer "trainer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trainer_profiles", force: :cascade do |t|
     t.string "hometown"
     t.string "favorite_pokemon"
@@ -30,5 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_134806) do
     t.string "role", default: "user", null: false
   end
 
+  add_foreign_key "pokemons", "trainers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "trainer_profiles", "trainers", on_update: :cascade, on_delete: :cascade
 end
