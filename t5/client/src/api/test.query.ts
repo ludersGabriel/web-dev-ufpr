@@ -10,7 +10,7 @@ export function useTest() {
   const ret = useQuery({
     queryKey: ['test'],
     queryFn: () => {
-      return fetch(`${baseUrl}/posts`, {
+      return fetch(`${baseUrl}/trainers`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -18,8 +18,6 @@ export function useTest() {
       }).then((res) => res.json())
     },
   })
-
-  console.log(ret.data)
 
   return ret
 }

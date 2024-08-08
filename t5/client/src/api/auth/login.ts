@@ -13,7 +13,7 @@ export function useLogin() {
       username,
       password,
     }: LoginMutation) => {
-      const resp = await fetch(`${baseUrl}/login`, {
+      const resp = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

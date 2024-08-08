@@ -17,7 +17,7 @@ export const Route =
 
 function RootComponent() {
   return (
-    <main className='w-full h-full bg-black text-white p-0 m-0'>
+    <main className='w-full h-full p-0 m-0'>
       <Outlet />
       <TanStackRouterDevtools
         position='bottom-right'

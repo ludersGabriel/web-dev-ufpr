@@ -8,11 +8,28 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Post.destroy_all
+Trainer.destroy_all
 
 20.times do
-    Post.create(
-        title: Faker::Lorem.sentence(word_count: 3),
-        body: Faker::Lorem.paragraph(sentence_count: 3)
+    Trainer.create(
+        name: Faker::Name.name,
+        age: rand(12..30),
+        username: Faker::Internet.username,
+        password: 'password',
     )
 end
+
+Trainer.create(
+    name: 'admin user',
+    age: 30,
+    username: 'admin',
+    password: 'admin',
+    role: 'admin',
+)
+
+Trainer.create(
+    name: 'user user',
+    age: 30,
+    username: 'user',
+    password: 'user',
+)

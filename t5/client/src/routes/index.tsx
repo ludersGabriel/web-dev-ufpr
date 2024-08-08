@@ -22,8 +22,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import toast from 'react-hot-toast'
-import { userQueryOptions } from '@/api/user/user.query'
-import { useTest } from '@/api/test.query'
+import { trainerQueryOptions } from '@/api/trainer/trainer.query'
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -31,9 +30,11 @@ export const Route = createFileRoute('/')({
     const client = context.queryClient
 
     try {
-      const data = await client.fetchQuery(userQueryOptions)
+      const data = await client.fetchQuery(
+        trainerQueryOptions
+      )
 
-      if (data?.user) {
+      if (data?.trainer) {
         throw new Error('User authenticated')
       }
     } catch (e) {
@@ -60,7 +61,6 @@ function Home() {
   const auth = useAuth()
   const navigate = useNavigate()
   const login = useLogin()
-  const { data } = useTest()
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(createLoginSchema),
@@ -74,47 +74,44 @@ function Home() {
     login.mutate(formData, {
       onSuccess: (data) => {
         flushSync(() => {
-          auth.setToken(data.token)
+          auth.setToken(data.token ?? null)
         })
 
-        localStorage.setItem('token', data.token)
+        localStorage.setItem('token', data.token ?? '')
 
-        const t = data.success ? toast.success : toast.error
+        const t = data.token ? toast.success : toast.error
 
-        t(data.message)
+        t(data.token ? 'Logged in' : 'Failed to login')
 
-        if (data.success) navigate({ to: '/dashboard' })
+        if (data.token) navigate({ to: '/dashboard' })
       },
     })
   }
 
   return (
-    <div className='flex justify-center items-center w-full h-full'>
-      <div>
-        {data?.map((post) => (
-          <div key={post.id}>
-            {post.title}
-            <p>{post.body}</p>
-          </div>
-        ))}
+    <div className='flex flex-col gap-10 justify-center items-center w-full h-full bg-pastel-yellow'>
+      <div className='text-center'>
+        <img src='/pokecenter.png' alt='pokecenter' />
       </div>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8 p-5 w-96 rounded-lg shadow-lg'
+          className='space-y-8 p-5 w-96 rounded-lg shadow-lg bg-pastel-pink'
         >
           <FormField
             control={form.control}
             name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel className='text-pastel-green'>
+                  Username
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder='winstonSmith'
                     {...field}
-                    className='text-black'
+                    className='text-black border-pastel-green'
                     autoFocus={true}
                   />
                 </FormControl>
@@ -127,20 +124,25 @@ function Home() {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel className='text-pastel-green'>
+                  Password
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder='1234change'
                     type='password'
                     {...field}
-                    className='text-black'
+                    className='text-black border-pastel-green'
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type='submit' className='mr-2'>
+          <Button
+            type='submit'
+            className='mr-2 bg-pastel-blue'
+          >
             Submit
           </Button>
         </form>

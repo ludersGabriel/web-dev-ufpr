@@ -8,12 +8,15 @@ import {
 } from 'react'
 import { flushSync } from 'react-dom'
 import toast from 'react-hot-toast'
-import { User, useUser } from './api/user/user.query'
+import {
+  Trainer,
+  useTrainer,
+} from './api/trainer/trainer.query'
 
 export interface AuthContext {
   isAuthenticated: boolean
   token: string | null
-  user: User | null
+  user: Trainer | null
   setToken: (token: string | null) => void
   isLoading: boolean
   logout: () => void
@@ -27,7 +30,7 @@ export function AuthProvider({
   children: ReactNode
 }) {
   const [token, setToken] = useState<string | null>(null)
-  const { user, isPending } = useUser(token ?? '')
+  const { user, isPending } = useTrainer(token ?? '')
   const isAuthenticated = !!user
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
