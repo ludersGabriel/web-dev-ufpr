@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BattlesControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::BattlesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @battle = battles(:one)
   end

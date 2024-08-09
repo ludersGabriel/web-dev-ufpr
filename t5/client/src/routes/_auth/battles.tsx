@@ -58,7 +58,9 @@ export default function Battles() {
               <h2 className='text-3xl font-bold text-pastel-blue'>
                 {battle.location}
               </h2>
-              <PokemonBattleCreate propsBattle={battle} />
+              {isAdmin && (
+                <PokemonBattleCreate propsBattle={battle} />
+              )}
             </div>
             {isAdmin && <BattleEdit propsBattle={battle} />}
           </div>

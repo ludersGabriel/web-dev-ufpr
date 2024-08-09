@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PokemonsControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::PokemonsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @pokemon = pokemons(:one)
   end

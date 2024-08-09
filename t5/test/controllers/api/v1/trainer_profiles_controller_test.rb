@@ -1,6 +1,6 @@
 require "test_helper"
 
-class TrainerProfilesControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::TrainerProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @trainer_profile = trainer_profiles(:one)
   end
